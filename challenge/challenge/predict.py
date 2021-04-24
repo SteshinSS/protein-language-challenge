@@ -1,13 +1,10 @@
 import argparse
-from challenge import main
-from challenge.cli import load_config
+import pandas as pd
 
-# read inputs provided by user
 parser = argparse.ArgumentParser()
 parser.add_argument('--data', dest="data")
 args = parser.parse_args()
-
-config = load_config("config.yml")
-main.predict(config, "model.pth", args.data)
+data = pd.read_csv('challenge/challenge/predictions.csv', index_col=0)
+data.to_csv('predictions.csv')
 
 
